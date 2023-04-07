@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nistab/constants/color_consts.dart';
 
@@ -15,6 +16,14 @@ class _LoginState extends State<Login> {
   var password = TextEditingController();
 
   @override
+  void dispose() {
+    user.dispose();
+    password.dispose();
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -26,10 +35,13 @@ class _LoginState extends State<Login> {
               decoration: BoxDecoration(
                   color: ColorConst.green,
                   borderRadius:
-                      const BorderRadius.vertical(bottom: Radius.circular(25))),
+                  const BorderRadius.vertical(bottom: Radius.circular(25))),
               alignment: Alignment.bottomCenter,
               width: double.infinity,
-              height: MediaQuery.of(context).size.height / 9,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 9,
               child: const Text(
                 "NISTab",
                 style: TextStyle(
@@ -42,7 +54,10 @@ class _LoginState extends State<Login> {
               height: 20,
             ),
             Container(
-              height: MediaQuery.of(context).size.height / 4,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 4,
               width: double.infinity,
               color: Colors.black,
             ),
@@ -58,7 +73,7 @@ class _LoginState extends State<Login> {
                     children: [
                       InputFields(
                         controller: user,
-                        text: "Username",
+                        text: "Email",
                       ),
                       SizedBox(
                         height: 20,
@@ -71,23 +86,29 @@ class _LoginState extends State<Login> {
                         height: 20,
                       ),
                       SizedBox(
-                        width: MediaQuery.of(context).size.width / 1.3,
+                        width: MediaQuery
+                            .of(context)
+                            .size
+                            .width / 1.3,
                         height: 55,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: login,
                           child: Text("Login"),
                           style: ElevatedButton.styleFrom(
                               backgroundColor: ColorConst.green,
                               shape: RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(10)))),
+                                  BorderRadius.all(Radius.circular(10)))),
                         ),
                       ),
                     ],
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 5,
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 5,
                 ),
                 Text("Use your school account")
               ],
@@ -96,6 +117,13 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+
+  void login() async {
+    var email = user.text.trim();
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email.toLowerCase(),
+        password: password.text.trim());
   }
 }
 
@@ -114,7 +142,10 @@ class _InputFieldsState extends State<InputFields> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.of(context).size.width / 1.3,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width / 1.3,
       child: TextField(
 
         style: TextStyle(fontSize: 20),
@@ -122,7 +153,7 @@ class _InputFieldsState extends State<InputFields> {
         decoration: InputDecoration(
           label: Text(widget.text),
           floatingLabelStyle:
-              TextStyle(fontWeight: FontWeight.w900, color: ColorConst.green),
+          TextStyle(fontWeight: FontWeight.w900, color: ColorConst.green),
           filled: true,
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(10),
@@ -145,3 +176,4 @@ class _InputFieldsState extends State<InputFields> {
     );
   }
 }
+

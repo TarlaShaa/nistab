@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "901329229818",
+    "project_id": "nistab-f29e1",
+    "storage_bucket": "nistab-f29e1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901329229818:android:7d3991f0d20d7ee2a77643",
+        "android_client_info": {
+          "package_name": "com.tensai.nistab"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901329229818-ag42l5t3oprh6vncb1gvjqcvu0par2ah.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVrnYFuSBOS_eenf_zysDV0bkzDz6isno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "901329229818-ag42l5t3oprh6vncb1gvjqcvu0par2ah.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
