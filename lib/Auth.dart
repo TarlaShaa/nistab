@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:nistab/screens/login.dart';
+import 'package:nistab/tabs_controller.dart';
 
 class Auth extends StatelessWidget {
   const Auth({Key? key}) : super(key: key);
@@ -19,7 +20,10 @@ class Auth extends StatelessWidget {
                   Text(FirebaseAuth.instance.currentUser!.email.toString()),
                   ElevatedButton(onPressed: () async {
                     await FirebaseAuth.instance.signOut();
-                  }, child: Text("logout"))
+                  }, child: Text("logout")),
+                  ElevatedButton(onPressed: () {
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => TabsCtrl()), (route) => false);
+                  }, child: Text("press"))
                 ],
               ),
             ),
